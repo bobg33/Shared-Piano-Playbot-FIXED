@@ -16,13 +16,30 @@
 var input = document.createElement('input');
 input.type = 'file';
 input.accept=".mid"
-input.onchange = e => {
-   var file = e.target.files[0];
-   var path = (window.URL || window.webkitURL).createObjectURL(file);
-   getData(path)
-}
+input.onchange = async e => {
+    const file = e.target.files[0];
+    const arrayBuffer = await file.arrayBuffer();
+
+    // Wait until Midi class is available
+    if (typeof Midi === "undefined" && typeof window.Midi === "undefined") {
+        console.error("Midi class not loaded from @tonejs/midi.");
+        return;
+    }
+
+    const data = new (window.Midi || Midi)(arrayBuffer);
+
+    console.log("MIDI data loaded:", data);
+
+    bpm = Math.floor(data.header.tempos[0].bpm);
+    sus_interval = 480000 / bpm;
+    if (sus_interval > 3) sus_interval /= 2;
+    notes = merge(data);
+};
+
+
 async function getData(path) {
-   const data = await Midi.fromUrl(path); // await 안쓰면 Promise 반환됨
+   const arrayBuffer = await file.arrayBuffer(); // await 안쓰면 Promise 반환됨
+   const data = new Midi(arrayBuffer);
    console.log(data);
    bpm = Math.floor(data.header.tempos[0].bpm);
    sus_interval = 480000 / bpm // 2마디
