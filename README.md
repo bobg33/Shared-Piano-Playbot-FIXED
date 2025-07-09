@@ -12,8 +12,9 @@ Please click the gif below to watch full video :)
 
 ## How to Install
 1. Install [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) chrome extension.
-2. Add Playbot script to Tampermonkey.
-3. Tampermonkey will automatically run Playbot script if you visit Shared Piano webpage.
+2. Create a new script in Tampermonkey, copy the Playbot script, and paste it in.
+3. Follow these [instructions](https://www.tampermonkey.net/faq.php#Q209) to enable User Scripts. (Developer mode might be needed too)
+4. Tampermonkey will automatically run Playbot script if you visit Shared Piano webpage.
 
 ## How to Use
 1. Open Shared Piano webpage and press `ctrl + m`.
@@ -53,3 +54,5 @@ Sustain will automatically be turned on.
 - UI
 - Pause & Replay
 - Play speed control
+
+## This is a fix of the [original project](https://github.com/Queue-ri/Shared-Piano-Playbot) by Queue-ri. I might continue to update it as the code breaks from newer versions of Chrome/Tampermonkey.
